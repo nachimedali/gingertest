@@ -1,0 +1,27 @@
+{
+    "group": [
+        "group1", 
+        "group2", 
+        "group3", 
+        "group4"
+    ], 
+    "users": {
+        "1": {
+            "address": [
+                "tunisia"
+            ], 
+            "email": [
+                "nachi.med.ali@gmail.com"
+            ], 
+            "firstname": "mohamed ali", 
+            "group": [
+                "group1", 
+                "group2"
+            ], 
+            "lastname": "nachi", 
+            "phone": [
+                "55458723"
+            ]
+        }
+    }
+}

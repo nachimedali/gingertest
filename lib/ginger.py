@@ -20,10 +20,12 @@ class Group:
     def __str__(self):
         return "Group Name :{0}".format(self.name)
 
+# defining path to data file
+data_file = "./data/address_book_file.json"
         
 def add_contact():
-    address_book_file=open("./data/address_book_file.json","r")
-    is_file_empty=os.path.getsize("./data/address_book_file.json")==0
+    address_book_file=open(data_file,"r")
+    is_file_empty=os.path.getsize(data_file)==0
     if not is_file_empty:
         list_contacts=json.load(address_book_file)
     else:
@@ -38,7 +40,7 @@ def add_contact():
 
     try:
         contact=get_contact_info_from_user()
-        address_book_file=open("./data/address_book_file.json","w")
+        address_book_file=open(data_file,"w")
         list_contacts["users"][id_max] = contact.__dict__
         json.dump(list_contacts,address_book_file,indent=4, sort_keys=True)
         print "Contact added"
@@ -48,6 +50,7 @@ def add_contact():
         print "Contact not added"
     finally:
         address_book_file.close()
+    return 0
     
 def get_contact_info_from_user():
     try:
@@ -109,13 +112,10 @@ def get_contact_info_from_user():
         #print "Keyboard interrupt. Contact not added"
         raise e
 
-def say_hello():
-    name = raw_input("What is your name? ")
-    return "Hello " + name
 
 def add_group():
-    group_file=open("./data/address_book_file.json","r")
-    is_file_empty=os.path.getsize("./data/address_book_file.json")==0
+    group_file=open(data_file,"r")
+    is_file_empty=os.path.getsize(data_file)==0
     if not is_file_empty:
         list_contacts=json.load(group_file)
     else:
@@ -127,7 +127,7 @@ def add_group():
         if group.name in list_contacts["group"]:
             print "Group {0} already in list".format(group.name)
         else:
-            group_file=open("./data/address_book_file.json","w")
+            group_file=open(data_file,"w")
             list_contacts["group"].append(group.name)
             json.dump(list_contacts,group_file,indent=4, sort_keys=True)
             print "Group added"
@@ -137,6 +137,7 @@ def add_group():
         print "Group not added"
     finally:
         group_file.close()
+    return 0
     
 def get_group_info(list_group):
     try:
@@ -152,8 +153,8 @@ def get_group_info(list_group):
 
 
 def display_group():
-    address_book_file=open("./data/address_book_file.json","r")
-    is_file_empty=os.path.getsize("./data/address_book_file.json")==0
+    address_book_file=open(data_file,"r")
+    is_file_empty=os.path.getsize(data_file)==0
     if not is_file_empty:
         list_contacts=json.load(address_book_file)
         if len(list_contacts["group"])>0: 
@@ -175,16 +176,20 @@ def display_group():
             print "No Groups added\n"
     else:
         print "No data in address book\n"
-        return
     address_book_file.close()
-    
+    return 0
+
+def get_user_input():
+    user = raw_input("Enter a user firstname\n")
+    return user
+
 def display_user_groups():
-    address_book_file=open("./data/address_book_file.json","r")
-    is_file_empty=os.path.getsize("./data/address_book_file.json")==0
+    address_book_file=open(data_file,"r")
+    is_file_empty=os.path.getsize(data_file)==0
     if not is_file_empty:
         list_contacts=json.load(address_book_file)
         if len(list_contacts["users"])>0:
-            user = raw_input("Enter a user firstname\n")
+            user = get_user_input()
             i = 0
             for users in list_contacts["users"]:
                 if user.lower() == list_contacts["users"][users]["firstname"]:
@@ -197,12 +202,12 @@ def display_user_groups():
             print "no contacts in contact book\n"
     else:
         print "No data in address book\n"
-        return
     address_book_file.close()
+    return 0
     
 def find_user():
-    address_book_file=open("./data/address_book_file.json","r")
-    is_file_empty=os.path.getsize("./data/address_book_file.json")==0
+    address_book_file=open(data_file,"r")
+    is_file_empty=os.path.getsize(data_file)==0
     if not is_file_empty:
         list_contacts=json.load(address_book_file)
         if len(list_contacts["users"])>0:
@@ -218,12 +223,12 @@ def find_user():
             print "no contacts in contact book\n"
     else:
         print "No data in address book\n"
-        return
     address_book_file.close()
+    return 0
 
 def find_user_mail():
-    address_book_file=open("./data/address_book_file.json","r")
-    is_file_empty=os.path.getsize("./data/address_book_file.json")==0
+    address_book_file=open(data_file,"r")
+    is_file_empty=os.path.getsize(data_file)==0
     if not is_file_empty:
         list_contacts=json.load(address_book_file)
         if len(list_contacts["users"])>0:
@@ -240,7 +245,7 @@ def find_user_mail():
             print "no contacts in contact book\n"
     else:
         print "No data in address book\n"
-        return
     address_book_file.close()
+    return 0
 
     
