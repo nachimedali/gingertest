@@ -6,6 +6,23 @@
         "group4"
     ], 
     "users": {
+        "2": {
+            "address": [
+                "madrid"
+            ], 
+            "email": [
+                "zizou@yahoo.fr"
+            ], 
+            "firstname": "zinedine", 
+            "group": [
+                "group1", 
+                "group2"
+            ], 
+            "lastname": "zidane", 
+            "phone": [
+                "5552415210"
+            ]
+        }, 
         "1": {
             "address": [
                 "tunisia"

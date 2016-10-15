@@ -39,7 +39,7 @@ def add_contact():
         id_max = int(max(list_contacts["users"])) + 1
 
     try:
-        contact=get_contact_info_from_user()
+        contact=get_contact_info_from_user(list_contacts["group"])
         address_book_file=open(data_file,"w")
         list_contacts["users"][id_max] = contact.__dict__
         json.dump(list_contacts,address_book_file,indent=4, sort_keys=True)
@@ -52,7 +52,7 @@ def add_contact():
         address_book_file.close()
     return 0
     
-def get_contact_info_from_user():
+def get_contact_info_from_user(list_group):
     try:
         first_name=raw_input("Enter contact firstname\n")
         last_name=raw_input("Enter contact lastname\n")
@@ -99,9 +99,14 @@ def get_contact_info_from_user():
 		while(int(nbr_group)<1):
 			nbr_group=raw_input("Enter number of groups\n")
 		#Generating a string concatening all mail addresses of user
-		for i in xrange(0,int(nbr_group)):
-			group = raw_input("Enter group name\n")
-			name_group.append(group.lower())
+        i = 0
+        while(i<int(nbr_group)):
+            group = raw_input("Enter group name\n")
+            if group not in list_group:
+                print "group entered not available, please add it first \n"
+            else:
+                name_group.append(group.lower())
+                i +=1
 
         contact=Contact(first_name.lower(),last_name.lower(), mail_address, phone_num,name_group,location )
         return contact
